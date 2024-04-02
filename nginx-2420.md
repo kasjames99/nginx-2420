@@ -1,31 +1,36 @@
 Assuming you have ArchLinux running on a DigitalOcean droplet:
 
-1) Setting up the project directory
+1) Update the system
+
+Run `sudo pacman -Syu` to update and synchronize your database with the newest software.
+
+
+2) Setting up the project directory
 
 We will first create a directory called `/web/html/nginx-2420`, which will serve as the project root. This directory will hold the website documents.
 
 Run `sudo mkdir -p /web/html/nginx-2420` to create the directory as parent.
 
-2) Downloading Vim
+3) Downloading Vim
 
 Running `sudo pacman -S vim` will download and install vim to archlinux for use.
 
-3) Downloading nginx
+4) Downloading nginx
 
 NGINX is a http server and reverse proxy. running `sudo pacman -S nginx` will download it for use. -S will sync the databases and repositories in `/etc/pacman.conf`
 
-4) configuring nginx
+5) configuring nginx
 
 You'll now want to change directory into the nginx location using `cd /etc/nginx/`.
 
 We will create a new serve block for nginx-2420 using `sudo vim sites-available/nginx-2420`
 
-Inside this file, add the following configuration:
+Inside this file, type `i` to enter insert mode, and add the following configuration:
 
 ```
 server {
     listen 80;
-    server_name <droplet_ip>;
+    server_name <droplet_ip> #enter your droplet IP address here;
 
     root /web/html/nginx-2420;
     index index.html;
@@ -36,6 +41,8 @@ server {
 }
 ```
 
+Once copied, press `esc` to exit insert mode, and type `:wq` to save the file changes.
+
 Create a symbolic link to enable the server block by running `sudo ln -s /etc/nginx/sites-available/nginx-2420 /etc/nginx/sites-enabled/`. 
 `ln -s` creates the symbolic link, and the `-s` flag specifies the link being created is symbolic. 
 
@@ -45,9 +52,9 @@ Create a symbolic link to enable the server block by running `sudo ln -s /etc/ng
 
 When nginx starts, it reads the config files in this directory and applies them.
 
-5) Setting up the demo document
+6) Setting up the demo document
 
-Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2420/index.html`. This will open up a vim text editor. Paste the following into the editor:
+Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2420/index.html`. This will open up a vim text editor. Press `i` to enter insert mode, and paste the following into the editor:
 
 ```<!DOCTYPE html>
 <html lang="en">
@@ -78,8 +85,9 @@ Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2
 </body>
 </html>
 ```
+Press `:wq` to save changes and exit the file.
 
-6) Managing Nginx
+7) Managing Nginx
 
 Start nginx by running `sudo systemctl start nginx`
 
@@ -87,7 +95,7 @@ Enable nginx to start on boot by running `sudo systemctl enable nginx`
 
 Check the status of nginx to ensure it's running using `sudo systemctl status nginx`
 
-7) Accessing the demo page
+8) Accessing the demo page
 
 Open a web browser and enjter your droplet's IP address. You should see the demo page with the message "All your base are belong to us"
 
