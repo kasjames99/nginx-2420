@@ -23,23 +23,24 @@ NGINX is a http server and reverse proxy. running `sudo pacman -S nginx` will do
 
 You'll now want to change directory into the nginx location using `cd /etc/nginx/`.
 
-We will create a new serve block for nginx-2420 using `sudo vim sites-available/nginx-2420`
+We will create a new server block for nginx-2420 using `sudo vim sites-available/nginx-2420`
 
 Inside this file, type `i` to enter insert mode, and add the following configuration:
 
 ```
 server {
-    listen 80;
-    server_name <droplet_ip> #enter your droplet IP address here;
+    listen 80; #This line specifies that the server will listen on port 80
+    server_name <droplet_ip>; #enter your droplet IP address here
 
-    root /web/html/nginx-2420;
-    index index.html;
+    root /web/html/nginx-2420; #This line sets the root directory of the server
+    index index.html; #This line specifies the default file to serve when a directory is requested
 
     location / {
         try_files $uri $uri/ =404;
     }
 }
 ```
+You can find your digitalocean IP under 'server details' in your digitalocean account.
 
 Once copied, press `esc` to exit insert mode, and type `:wq` to save the file changes.
 
