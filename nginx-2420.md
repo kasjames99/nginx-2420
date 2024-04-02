@@ -21,6 +21,7 @@ We will create a new serve block for nginx-2420 using `sudo vim sites-available/
 
 Inside this file, add the following configuration:
 
+```
 server {
     listen 80;
     server_name <droplet_ip>;
@@ -32,6 +33,7 @@ server {
         try_files $uri $uri/ =404;
     }
 }
+```
 
 Create a symbolic link to enable the server block by running `sudo ln -s /etc/nginx/sites-available/nginx-2420 /etc/nginx/sites-enabled/`. `ln -s` creates the symbolic link, and the `-s` flag specifies the link being created is symbolic. `/etc/nginx/sites-available/nginx-2420` this will be the source file for the directory, `/etc/nginx/sites-enabled/` while this will be the destination directory where the symbolic link will be created. When nginx starts, it reads the config files in this directory and applies them.
 
@@ -39,7 +41,7 @@ Create a symbolic link to enable the server block by running `sudo ln -s /etc/ng
 
 Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2420/index.html`. This will open up a vim text editor. Paste the following into the editor:
 
-`<!DOCTYPE html>
+```<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,8 +69,16 @@ Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2
     <h1>All your base are belong to us</h1>
 </body>
 </html>
-`
+```
 
 6) Managing Nginx
 
 Start nginx by running `sudo systemctl start nginx`
+
+Enable nginx to start on boot by running `sudo systemctl enable nginx`
+
+Check the status of nginx to ensure it's running using `sudo systemctl status nginx`
+
+7) Accessing the demo page
+
+Open a web browser and enjter your droplet's IP address. You should see the demo page with the message "All your base are belong to us"
