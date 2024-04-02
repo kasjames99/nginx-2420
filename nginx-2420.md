@@ -1,11 +1,11 @@
 Assuming you have ArchLinux running on a DigitalOcean droplet:
 
-1) Update the system
+#Update the system
 
 Run `sudo pacman -Syu` to update and synchronize your database with the newest software.
 
 
-2) Setting up the project directory
+#Setting up the project directory
 
 We will first create a directory called `/web/html/nginx-2420`, which will serve as the project root. This directory will hold the website documents.
 
