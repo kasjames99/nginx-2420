@@ -9,7 +9,7 @@ Run `sudo pacman -Syu` to update and synchronize your database with the newest s
 
 We will first create a directory called `/web/html/nginx-2420`, which will serve as the project root. This directory will hold the website documents.
 
-Run `sudo mkdir -p /web/html/nginx-2420` to create the directory as parent.
+Run `sudo mkdir -p /web/html/nginx-2420` to create the directory, and any necessary parent directories by adding the `-p` flag.
 
 3) Downloading Vim
 
@@ -29,11 +29,15 @@ Inside this file, type `i` to enter insert mode, and add the following configura
 
 ```
 server {
-    listen 80; #This line specifies that the server will listen on port 80
-    server_name <droplet_ip>; #enter your droplet IP address here
+    listen 80; 
+    #This line specifies that the server will listen on port 80
+    server_name <droplet_ip>; 
+    #enter your droplet IP address here
 
-    root /web/html/nginx-2420; #This line sets the root directory of the server
-    index index.html; #This line specifies the default file to serve when a directory is requested
+    root /web/html/nginx-2420; 
+    #This line sets the root directory of the server
+    index index.html; 
+    #This line specifies the default file to serve when a directory is requested
 
     location / {
         try_files $uri $uri/ =404;
