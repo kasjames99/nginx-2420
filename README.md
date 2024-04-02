@@ -1,25 +1,25 @@
 Assuming you have ArchLinux running on a DigitalOcean droplet:
 
-#Update the system
+# Update the system
 
 Run `sudo pacman -Syu` to update and synchronize your database with the newest software.
 
 
-#Setting up the project directory
+# Setting up the project directory
 
 We will first create a directory called `/web/html/nginx-2420`, which will serve as the project root. This directory will hold the website documents.
 
 Run `sudo mkdir -p /web/html/nginx-2420` to create the directory, and any necessary parent directories by adding the `-p` flag.
 
-3) Downloading Vim
+# Downloading Vim
 
 Running `sudo pacman -S vim` will download and install vim to archlinux for use.
 
-4) Downloading nginx
+# Downloading nginx
 
 NGINX is a http server and reverse proxy. running `sudo pacman -S nginx` will download it for use. -S will sync the databases and repositories in `/etc/pacman.conf`
 
-5) configuring nginx
+# configuring nginx
 
 You'll now want to change directory into the nginx location using `cd /etc/nginx/`.
 
@@ -57,7 +57,7 @@ Create a symbolic link to enable the server block by running `sudo ln -s /etc/ng
 
 When nginx starts, it reads the config files in this directory and applies them.
 
-6) Setting up the demo document
+# Setting up the demo document
 
 Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2420/index.html`. This will open up a vim text editor. Press `i` to enter insert mode, and paste the following into the editor:
 
@@ -92,7 +92,7 @@ Create the new HTML file for the demo document using `sudo vim /web/html/nginx-2
 ```
 Press `:wq` to save changes and exit the file.
 
-7) Managing Nginx
+# Managing Nginx
 
 Start nginx by running `sudo systemctl start nginx`
 
@@ -100,7 +100,7 @@ Enable nginx to start on boot by running `sudo systemctl enable nginx`
 
 Check the status of nginx to ensure it's running using `sudo systemctl status nginx`
 
-8) Accessing the demo page
+# Accessing the demo page
 
 Open a web browser and enjter your droplet's IP address. You should see the demo page with the message "All your base are belong to us"
 
