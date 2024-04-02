@@ -1,6 +1,7 @@
 Assuming you have ArchLinux running on a DigitalOcean droplet:
 
 1) Setting up the project directory
+
 We will first create a directory called '/web/html/nginx-2420', which will serve as the project root. This directory will hold the website documents.
 
 Run `sudo mkdir -p /web/html/nginx-2420` to create the directory as parent.
@@ -35,7 +36,14 @@ server {
 }
 ```
 
-Create a symbolic link to enable the server block by running `sudo ln -s /etc/nginx/sites-available/nginx-2420 /etc/nginx/sites-enabled/`. `ln -s` creates the symbolic link, and the `-s` flag specifies the link being created is symbolic. `/etc/nginx/sites-available/nginx-2420` this will be the source file for the directory, `/etc/nginx/sites-enabled/` while this will be the destination directory where the symbolic link will be created. When nginx starts, it reads the config files in this directory and applies them.
+Create a symbolic link to enable the server block by running `sudo ln -s /etc/nginx/sites-available/nginx-2420 /etc/nginx/sites-enabled/`. 
+`ln -s` creates the symbolic link, and the `-s` flag specifies the link being created is symbolic. 
+
+`/etc/nginx/sites-available/nginx-2420` this will be the source file for the directory, 
+
+`/etc/nginx/sites-enabled/` while this will be the destination directory where the symbolic link will be created. 
+
+When nginx starts, it reads the config files in this directory and applies them.
 
 5) Setting up the demo document
 
@@ -82,3 +90,4 @@ Check the status of nginx to ensure it's running using `sudo systemctl status ng
 7) Accessing the demo page
 
 Open a web browser and enjter your droplet's IP address. You should see the demo page with the message "All your base are belong to us"
+
