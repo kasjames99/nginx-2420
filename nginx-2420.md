@@ -2,7 +2,7 @@ Assuming you have ArchLinux running on a DigitalOcean droplet:
 
 1) Setting up the project directory
 
-We will first create a directory called '/web/html/nginx-2420', which will serve as the project root. This directory will hold the website documents.
+We will first create a directory called `/web/html/nginx-2420`, which will serve as the project root. This directory will hold the website documents.
 
 Run `sudo mkdir -p /web/html/nginx-2420` to create the directory as parent.
 
