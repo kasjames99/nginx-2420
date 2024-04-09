@@ -73,9 +73,9 @@ This command will use the ```put``` command to place the server in the opt/backe
 
 # Edit Nginx Server Block for Reverse Proxy
 
-1) Open the nginx server block config file using ```sudo vim /etc/nginx/sites-available/nginx-2420```
+1. Open the nginx server block config file using ```sudo vim /etc/nginx/sites-available/nginx-2420```
 
-2) Add a location block to proxy requests on the backend by copy pasting the following:
+2. Add a location block to proxy requests on the backend by copy pasting the following:
 
 ```Bash
 location /backend {
@@ -90,12 +90,12 @@ location /backend {
 
 Type ```:wq``` to save and exit the file.
 
-3) Test the nginx file for syntax errors using ```sudo nginx -t```
+3. Test the nginx file for syntax errors using ```sudo nginx -t```
 
-4) If there are no errors, use ```sudo systemctl reload nginx```
+4. If there are no errors, use ```sudo systemctl reload nginx```
 
 This reloads nginx to update the reverse proxy block.
 
 # Testing the server
 
-1) Ensure the backend service is running using '
+1. Ensure the backend service is running using '
