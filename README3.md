@@ -4,13 +4,20 @@ This will be a continuation of the first tutorial. Assuming you have
 
 UFW stands for Uncomplicated Firewall. It will help manage iptables, the default management tool for ArchLinux.
 
-1) install UFW using 'sudo pacman -S ufw'. 
+1) install UFW using ```Bash sudo pacman -S ufw```. 
 
 Sudo will use elevated privleges to find and install UFW using 'apt-get install ufw'
 
 2) Allow SSH using 'sudo ufw allow ssh'.
 
 This allows SSH connections, and since we're running a digitalocean droplet connecting to SSH, we must ensure that this is allowed first.
+
+3) Allow HTTP and HTTPS traffic using:
+
+'sudo ufw allow http'
+'sudo ufw allow https'
+
+This will allow traffic through the firewall, ensuring the web server can serve content through both HTTP and HTTPS protocols.
 
 3) Enable and start UFW using 'sudo systemctl enable --now ufw.service'.
 
@@ -35,7 +42,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/backend/backend_binary
+ExecStart=/opt/backend/hello-server
 Restart=always
 
 [Install]
@@ -51,6 +58,18 @@ WantedBy=multi-user.target
 These commands reload the configuration file, which is necessary after changes, since systemd needs to be notified to update. This doesn't start or stop any services, only reloads the config.
 
 These commands will also set backend to start automatically at startup.
+
+3) Download the backend server from the github attachments location here: https://gitlab.com/cit2420/2420_notes_w24/-/tree/main/attachments?ref_type=heads
+
+4) Using SFTP, use your arch username followed by your droplet IP to open a connection from your local machine to your droplet, using the command line 'sftp username@your_droplet_ip'.
+
+5) Navigate to the directory where the file is located locally using cd, ie 'cd /path/to/local' on your home system.
+
+6) Upload hello-server to your droplet using 'put hello-server /opt/backend/'. 
+
+7) Type 'exit' to disconnect the SFTP connection
+
+This command will use the 'put' command to place the server in the opt/backend location. 
 
 # Edit Nginx Server Block for Reverse Proxy
 
@@ -77,4 +96,6 @@ Type :wq to save and exit the file.
 
 This reloads nginx to update the reverse proxy block.
 
-Download the backend server file from  sftp, put hello-server
+# Testing the server
+
+1) Ensure the backend service is running using '
