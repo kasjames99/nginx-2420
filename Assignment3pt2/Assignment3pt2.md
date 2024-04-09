@@ -98,4 +98,15 @@ This reloads nginx to update the reverse proxy block.
 
 # Testing the server
 
-1. Ensure the backend service is running using '
+1. Ensure the backend service is running using ```sudo systemctl start backend.service```
+
+2. Reload systemd and Nginx using: 
+
+```sudo systemctl daemon-reload```
+```sudo systemctl restart nginx```
+
+This ensures that both both the server and nginx are up to date and running.
+
+3. Test the backend server by running ```curl http://localhost:8080/hey```
+
+4. Test the reverse proxy by running ```curl http://localhost/backend/hey```
